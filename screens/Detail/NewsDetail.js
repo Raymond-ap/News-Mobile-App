@@ -5,6 +5,7 @@ import {
   Image,
   SafeAreaView,
   ScrollView,
+  Share,
 } from "react-native";
 import React from "react";
 import { Ionicons } from "@expo/vector-icons";
@@ -13,9 +14,30 @@ import moment from "moment";
 
 export default function NewsDetail({ route }) {
   const article = route.params.article;
+  const onShare = async () => {
+    try {
+      const result = await Share.share({
+        message: article.url,
+        url: article.url,
+        title: article.title,
+      });
+      if (result.action === Share.sharedAction) {
+        if (result.activityType) {
+          // shared with activity type of result.activityType
+        } else {
+          // shared
+        }
+      } else if (result.action === Share.dismissedAction) {
+        // dismissed
+      }
+    } catch (error) {
+      alert(error.message);
+    }
+  };
+
   return (
     <SafeAreaView className="h-full bg-white">
-      <Header />
+      <Header onPress={onShare} />
       <ScrollView showsVerticalScrollIndicator={false} className="py-3">
         <View className=" mx-4">
           <View className="flex flex-row items-center justify-between">
@@ -52,7 +74,7 @@ export default function NewsDetail({ route }) {
   );
 }
 
-const Header = () => {
+const Header = ({ onPress }) => {
   const navigation = useNavigation();
   return (
     <View
@@ -73,7 +95,7 @@ const Header = () => {
           detail article
         </Text>
       </View>
-      <TouchableOpacity activeOpacity={0.9}>
+      <TouchableOpacity onPress={() => onPress()} activeOpacity={0.9}>
         <Ionicons name="share" color={"#000"} size={24} />
       </TouchableOpacity>
     </View>
