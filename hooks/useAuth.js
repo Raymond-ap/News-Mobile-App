@@ -13,6 +13,8 @@ const AuthContext = createContext({});
 export const AuthProvider = ({ children }) => {
   const [greeting, setGreeting] = useState("");
   const [techNews, setTechNews] = useState([]);
+  const [BBCNews, setBBCNews] = useState([]);
+  const [loading, setLoading] = useState(false);
   const baseURL = "https://newsapi.org/v2";
 
   const handleGreeting = () => {
@@ -28,13 +30,22 @@ export const AuthProvider = ({ children }) => {
 
   const getData = async () => {
     try {
-      const response = await fetch(
+      setLoading(true);
+      const tech_response = await fetch(
         `${baseURL}/top-headlines?sources=techcrunch&apiKey=${API_KEY}`
       );
-      const data = await response.json();
-      setTechNews(data.articles);
+      const bbc_response = await fetch(
+        `${baseURL}/top-headlines?sources=bbc-news&apiKey=${API_KEY}`
+      );
+
+      const techData = await tech_response.json();
+      const bbcData = await bbc_response.json();
+      setBBCNews(bbcData.articles);
+      setTechNews(techData.articles);
+      setLoading(false);
     } catch (err) {
-      Alert.alert("Error", "Fail to get tech news", [
+      setLoading(false);
+      Alert.alert("Error", err.message, [
         { text: "Cancel", onPress: () => console.log("Cancel Pressed") },
         { text: "Retry", onPress: () => getData() },
       ]);
@@ -49,9 +60,10 @@ export const AuthProvider = ({ children }) => {
   const memoedValue = useMemo(
     () => ({
       techNews,
+      BBCNews,
       greeting,
     }),
-    [greeting, techNews]
+    [greeting, techNews, BBCNews]
   );
   return (
     <AuthContext.Provider value={memoedValue}>{children}</AuthContext.Provider>

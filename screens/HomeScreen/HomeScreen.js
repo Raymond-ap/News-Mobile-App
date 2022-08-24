@@ -1,15 +1,19 @@
-import { View, Text, SafeAreaView, TouchableOpacity } from "react-native";
+import { View, Text, SafeAreaView, TouchableOpacity, ScrollView } from "react-native";
 import React, { useEffect, useState } from "react";
 import { TechNews, FeaturedRow  } from "../../components";
 import useAuth from "../../hooks/useAuth";
 import { Ionicons } from "@expo/vector-icons";
 
 export default function HomeScreen() {
-  const {techNews} = useAuth();
+  const {techNews, BBCNews} = useAuth();
   return (
     <SafeAreaView className="h-full bg-white ">
       <Header />
-      <FeaturedRow data={techNews} description={"Top headlines from the world of technology"} headline={"Tech News"}/>
+      <ScrollView showsVerticalScrollIndicator={false}>
+        <FeaturedRow data={techNews} description={"Top headlines from the world of technology"} headline={"Tech News"}/>
+        <FeaturedRow data={BBCNews} description={"Top headlines from BBC"} headline={"BBC News"}/>
+        <FeaturedRow data={BBCNews} description={"All articles about Bitcoin"} headline={"Cryptocurrency News"}/>
+      </ScrollView>
     </SafeAreaView>
   );
 }

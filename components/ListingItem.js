@@ -12,7 +12,7 @@ const ListingItem = ({ item }) => {
         className="h-48 mx-1 shadow-lg w-72 rounded-lg object-cover"
       >
         <LinearGradient
-          colors={["rgba(0,0,0,0.6)", "rgba(0,0,0,0.8)"]}
+          colors={["rgba(0,0,0,0.4)", "rgba(0,0,0,0.7)"]}
           className="rounded-lg absolute inset-0 top-0 left-0 right-0 bottom-0 overflow-hidden"
         >
           <View className="absolute bottom-1 left-2 right-2">
