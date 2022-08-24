@@ -2,10 +2,13 @@ import { View, Text, TouchableOpacity, ImageBackground } from "react-native";
 import React from "react";
 import { LinearGradient } from "expo-linear-gradient";
 import { truncate } from "./truncate";
+import { useNavigation } from "@react-navigation/native";
 
 const ListingItem = ({ item }) => {
+  const navigation = useNavigation();
+
   return (
-    <TouchableOpacity activeOpacity={0.9} className="py-3">
+    <TouchableOpacity onPress={() => navigation.navigate("NewsDetail", {item: item})} activeOpacity={0.9} className="py-3">
       <ImageBackground
         source={{ uri: item?.urlToImage }}
         imageStyle={{ borderRadius: 10 }}
