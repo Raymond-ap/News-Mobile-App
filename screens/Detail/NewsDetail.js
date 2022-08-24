@@ -13,7 +13,6 @@ import moment from "moment";
 
 export default function NewsDetail({ route }) {
   const article = route.params.article;
-  console.log(article);
   return (
     <SafeAreaView className="h-full bg-white">
       <Header />
