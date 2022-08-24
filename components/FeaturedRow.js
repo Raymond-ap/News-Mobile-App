@@ -37,7 +37,7 @@ const FeaturedRow = ({ headline, description, data }) => {
             showsHorizontalScrollIndicator={false}
             data={data.slice(0, 10)}
             keyExtractor={(_, index) => index.toString()}
-            renderItem={({ item }) => <ListingItem item={item} />}
+            renderItem={({ item }) => <ListingItem item={item}/>}
           />
         )}
       </View>
