@@ -55,9 +55,6 @@ const Header = () => {
       <Text className="text-base font-semibold tracking-widest bg-white capitalize text-black">
         {greeting}
       </Text>
-      <TouchableOpacity activeOpacity={0.8}>
-        <Ionicons name="search" color={"#000"} size={20} />
-      </TouchableOpacity>
     </View>
   );
 };
