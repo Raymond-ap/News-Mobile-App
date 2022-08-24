@@ -4,7 +4,8 @@ import {
   SafeAreaView,
   TouchableOpacity,
   ActivityIndicator,
-  FlatList
+  FlatList,
+  RefreshControl
 } from "react-native";
 import React from "react";
 import { Ionicons } from "@expo/vector-icons";
@@ -14,8 +15,7 @@ import useAuth from "../../hooks/useAuth";
 
 const ArticleScreen = ({ route }) => {
   const { headline, data } = route.params;
-  const { loading } = useAuth();
-  console.log(headline, data);
+  const { loading, onRefresh } = useAuth();
   return (
     <SafeAreaView className="h-full bg-white">
       <Header headline={headline} />
@@ -26,12 +26,14 @@ const ArticleScreen = ({ route }) => {
         </View>
       ) : (
         <FlatList
+          refreshControl={
+            <RefreshControl refreshing={loading} onRefresh={onRefresh} />
+          }
           data={data}
-          keyExtractor={(_,index) => index.toString()}
+          keyExtractor={(_, index) => index.toString()}
           showsVerticalScrollIndicator={false}
-          renderItem={({item}) => <ArticleItem article={item}/>}
+          renderItem={({ item }) => <ArticleItem article={item} />}
         />
-        
       )}
     </SafeAreaView>
   );
