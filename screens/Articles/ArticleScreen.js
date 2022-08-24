@@ -5,7 +5,7 @@ import {
   TouchableOpacity,
   ActivityIndicator,
   FlatList,
-  RefreshControl
+  RefreshControl,
 } from "react-native";
 import React from "react";
 import { Ionicons } from "@expo/vector-icons";
@@ -59,7 +59,6 @@ const Header = ({ headline }) => {
       <Text className="text-base capitalize text-black font-semibold tracking-widest">
         {headline}
       </Text>
-      <View />
     </View>
   );
 };
