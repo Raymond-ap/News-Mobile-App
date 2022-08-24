@@ -1,11 +1,12 @@
 import { View, Text, SafeAreaView, TouchableOpacity } from "react-native";
 import React, { useEffect, useState } from "react";
-import { TechNews } from "../../component";
+import { TechNews } from "../../components";
 import useAuth from "../../hooks/useAuth";
+import { Ionicons } from "@expo/vector-icons";
 
 export default function HomeScreen() {
   return (
-    <SafeAreaView className="h-full bg-white">
+    <SafeAreaView className="h-full bg-white ">
       <Header />
       <TechNews />
     </SafeAreaView>
@@ -15,10 +16,13 @@ export default function HomeScreen() {
 const Header = () => {
   const { greeting } = useAuth();
   return (
-    <View className="py-2 px-4">
-      <Text className="text-lg font-semibold tracking-widest bg-white border-b border-gray-200 pb-1 capitalize text-black">
+    <View className="py-2 px-4 flex flex-row items-center justify-between border-b border-gray-300 pb-1">
+      <Text className="text-base font-semibold tracking-widest bg-white capitalize text-black">
         {greeting}
       </Text>
+      <TouchableOpacity activeOpacity={0.8}>
+        <Ionicons name="search" color={"#000"} size={20} />
+      </TouchableOpacity>
     </View>
   );
 };
