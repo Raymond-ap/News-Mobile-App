@@ -56,9 +56,12 @@ export default function NewsDetail({ route }) {
 const Header = () => {
   const navigation = useNavigation();
   return (
-    <View style={{
-      elevation: 3,
-    }} className="flex flex-row bg-white items-center justify-between px-4 py-2">
+    <View
+      style={{
+        elevation: 3,
+      }}
+      className="flex flex-row bg-white items-center justify-between px-4 py-2"
+    >
       <View className="flex flex-row items-center">
         <TouchableOpacity
           activeOpacity={0.9}
