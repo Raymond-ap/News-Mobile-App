@@ -4,11 +4,16 @@ import React, {
   useEffect,
   useMemo,
   useState,
+  useCallback,
 } from "react";
 import { API_KEY } from "@env";
 import { Alert } from "react-native";
 
 const AuthContext = createContext({});
+
+const wait = (timeout) => {
+  return new Promise((resolve) => setTimeout(resolve, timeout));
+};
 
 export const AuthProvider = ({ children }) => {
   const [greeting, setGreeting] = useState("");
@@ -28,6 +33,11 @@ export const AuthProvider = ({ children }) => {
       setGreeting("Good evening");
     }
   };
+
+  const onRefresh = useCallback(() => {
+    getData();
+    wait(2000).then(() => setLoading(false));
+  }, []);
 
   const getData = async () => {
     try {
@@ -67,13 +77,14 @@ export const AuthProvider = ({ children }) => {
 
   const memoedValue = useMemo(
     () => ({
+      onRefresh,
       loading,
       techNews,
       BBCNews,
       greeting,
-      cryptoNews
+      cryptoNews,
     }),
-    [loading,greeting, techNews, BBCNews, cryptoNews]
+    [onRefresh, loading, greeting, techNews, BBCNews, cryptoNews]
   );
   return (
     <AuthContext.Provider value={memoedValue}>{children}</AuthContext.Provider>
