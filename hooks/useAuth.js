@@ -67,12 +67,13 @@ export const AuthProvider = ({ children }) => {
 
   const memoedValue = useMemo(
     () => ({
+      loading,
       techNews,
       BBCNews,
       greeting,
       cryptoNews
     }),
-    [greeting, techNews, BBCNews, cryptoNews]
+    [loading,greeting, techNews, BBCNews, cryptoNews]
   );
   return (
     <AuthContext.Provider value={memoedValue}>{children}</AuthContext.Provider>

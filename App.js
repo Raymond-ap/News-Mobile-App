@@ -3,7 +3,7 @@ import { Text, View } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { TailwindProvider } from "tailwindcss-react-native";
-import { HomeScreen, NewsDetail } from "./screens";
+import { HomeScreen, NewsDetail, ArticleScreen } from "./screens";
 import { AuthProvider } from "./hooks/useAuth";
 
 const Stack = createNativeStackNavigator();
@@ -19,6 +19,7 @@ export default function App() {
           >
             <Stack.Screen name="Home" component={HomeScreen} />
             <Stack.Screen name="NewsDetail" component={NewsDetail} />
+            <Stack.Screen name="ArticleScreen" component={ArticleScreen} />
           </Stack.Navigator>
         </AuthProvider>
       </NavigationContainer>
