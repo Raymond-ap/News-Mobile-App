@@ -3,6 +3,7 @@ import React from "react";
 import { LinearGradient } from "expo-linear-gradient";
 import { truncate } from "./truncate";
 import { useNavigation } from "@react-navigation/native";
+import moment from "moment";
 
 const ListingItem = ({ item }) => {
   const navigation = useNavigation();
@@ -29,7 +30,7 @@ const ListingItem = ({ item }) => {
             </Text>
             <View className="my-1 flex flex-row items-center justify-between">
               <Text className="text-gray-200 text-sm ">
-                24 may 2022 • 5 mins ago
+                {`${moment(item?.publishedAt).format("MMM Do YY")} • ${moment(item?.publishedAt).fromNow()}`}
               </Text>
               <Text className="text-gray-200 text-sm ">Brian Heater</Text>
             </View>
