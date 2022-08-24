@@ -38,6 +38,7 @@ export default function HomeScreen() {
           description={"All articles about Bitcoin"}
           headline={"Cryptocurrency News"}
         />
+      <View className="py-3" />
       </ScrollView>
     </SafeAreaView>
   );
