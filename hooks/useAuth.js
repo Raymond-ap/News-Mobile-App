@@ -14,6 +14,7 @@ export const AuthProvider = ({ children }) => {
   const [greeting, setGreeting] = useState("");
   const [techNews, setTechNews] = useState([]);
   const [BBCNews, setBBCNews] = useState([]);
+  const [cryptoNews, setCryptoNews] = useState([]);
   const [loading, setLoading] = useState(false);
   const baseURL = "https://newsapi.org/v2";
 
@@ -38,10 +39,17 @@ export const AuthProvider = ({ children }) => {
         `${baseURL}/top-headlines?sources=bbc-news&apiKey=${API_KEY}`
       );
 
+      const crypto_response = await fetch(
+        `${baseURL}/everything?q=bitcoin&apiKey=${API_KEY}`
+      );
+
       const techData = await tech_response.json();
       const bbcData = await bbc_response.json();
+      const cryptoData = await crypto_response.json();
+
       setBBCNews(bbcData.articles);
       setTechNews(techData.articles);
+      setCryptoNews(cryptoData.articles);
       setLoading(false);
     } catch (err) {
       setLoading(false);
@@ -62,8 +70,9 @@ export const AuthProvider = ({ children }) => {
       techNews,
       BBCNews,
       greeting,
+      cryptoNews
     }),
-    [greeting, techNews, BBCNews]
+    [greeting, techNews, BBCNews, cryptoNews]
   );
   return (
     <AuthContext.Provider value={memoedValue}>{children}</AuthContext.Provider>
