@@ -5,14 +5,14 @@ import useAuth from "../../hooks/useAuth";
 import { Ionicons } from "@expo/vector-icons";
 
 export default function HomeScreen() {
-  const {techNews, BBCNews} = useAuth();
+  const {techNews, BBCNews, cryptoNews} = useAuth();
   return (
     <SafeAreaView className="h-full bg-white ">
       <Header />
       <ScrollView showsVerticalScrollIndicator={false} className="py-4">
         <FeaturedRow data={techNews} description={"Top headlines from the world of technology"} headline={"Tech News"}/>
         <FeaturedRow data={BBCNews} description={"Top headlines from BBC"} headline={"BBC News"}/>
-        <FeaturedRow data={BBCNews} description={"All articles about Bitcoin"} headline={"Cryptocurrency News"}/>
+        <FeaturedRow data={cryptoNews} description={"All articles about Bitcoin"} headline={"Cryptocurrency News"}/>
       </ScrollView>
     </SafeAreaView>
   );
