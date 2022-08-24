@@ -59,6 +59,7 @@ const Header = ({ headline }) => {
       <Text className="text-base capitalize text-black font-semibold tracking-widest">
         {headline}
       </Text>
+      <View/>
     </View>
   );
 };
