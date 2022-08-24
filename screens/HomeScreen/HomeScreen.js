@@ -4,6 +4,7 @@ import {
   SafeAreaView,
   TouchableOpacity,
   ScrollView,
+  RefreshControl,
 } from "react-native";
 import React, { useEffect, useState } from "react";
 import { TechNews, FeaturedRow } from "../../components";
@@ -11,11 +12,17 @@ import useAuth from "../../hooks/useAuth";
 import { Ionicons } from "@expo/vector-icons";
 
 export default function HomeScreen() {
-  const { techNews, BBCNews, cryptoNews } = useAuth();
+  const { techNews, BBCNews, cryptoNews, loading, onRefresh } = useAuth();
   return (
     <SafeAreaView className="h-full bg-white ">
       <Header />
-      <ScrollView showsVerticalScrollIndicator={false} className="py-4">
+      <ScrollView
+        refreshControl={
+          <RefreshControl refreshing={loading} onRefresh={onRefresh} />
+        }
+        showsVerticalScrollIndicator={false}
+        className="py-4"
+      >
         <FeaturedRow
           data={techNews}
           description={"Top headlines from the world of technology"}
