@@ -1,6 +1,3 @@
 export const truncate = (str, n) => {
-  if (str.length > n) {
-    return str.slice(0, n) + "...";
-  }
-  return str;
+  return str.length > n ? str.substr(0, n - 1) + "..." : str;
 };
