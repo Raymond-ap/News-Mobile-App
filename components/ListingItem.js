@@ -9,7 +9,7 @@ const ListingItem = ({ item }) => {
   const navigation = useNavigation();
 
   return (
-    <TouchableOpacity onPress={() => navigation.navigate("NewsDetail", {item: item})} activeOpacity={0.9} className="py-3">
+    <TouchableOpacity onPress={() => navigation.navigate("NewsDetail", {article: item})} activeOpacity={0.9} className="py-3">
       <ImageBackground
         source={{ uri: item?.urlToImage }}
         imageStyle={{ borderRadius: 10 }}
