@@ -1,5 +1,5 @@
-import TechNews from "./TechNews";
+import FeaturedRow from "./FeaturedRow";
 
 export {
-    TechNews
+    FeaturedRow
 }
